@@ -11,7 +11,7 @@ const router = createRouter({
       name: 'home',
       component: LayoutPage,
       // component: HomeView
-       children: [
+      children: [
         {
           path: '/home',
           component: HomeView
@@ -25,6 +25,23 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    //post a job
+    {
+      path: '/postJob',
+      name: 'postJob',
+      component: LayoutPage,
+      redirect: '/postOneJob',
+      children: [
+        {
+          path: '/postOneJob',
+          name: 'postOneJob',
+          component: () => import('@/views/PostOneJob/PostJobPage.vue')
+        }
+      ]
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
     }
   ]
 })
